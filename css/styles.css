@@ -1,0 +1,19 @@
+body {
+  margin: 20px;
+}
+
+.container{
+ padding : 50px;
+ border : red 2px;
+} 
+.location1Details {
+ display: none;
+}
+
+.location2Details {
+ display: none;
+}
+
+.location3Details {
+ display: none;
+} 
