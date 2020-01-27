@@ -1,40 +1,40 @@
-function AddressBook() {
-  this.contacts = [];
+function catalog() {
+  this.places = [];
   this.currentId = 0;
 }
 
-AddressBook.prototype.addContact = function(contact) {
-  contact.id = this.assignId();
-  this.contacts.push(contact);
+catalog.prototype.addPlace = function(place) {
+  place.id = this.assignId();
+  this.places.push(place);
 }
 
-AddressBook.prototype.assignId = function() {
+catalog.prototype.assignId = function() {
   this.currentId += 1;
   return this.currentId;
 }
 
 
-Contact.prototype.fullName = function() {
-  return this.firstName + " " + this.lastName;
+Place.prototype.fullName = function() {
+  return this.location + " " + this.landmark;
   
 }
 
-AddressBook.prototype.findContact = function(id) {
-  for (var i=0; i< this.contacts.length; i++) {
-    if (this.contacts[i]) {
-      if (this.contacts[i].id == id) {
-        return this.contacts[i];
+catalog.prototype.findPlace = function(id) {
+  for (var i=0; i< this.places.length; i++) {
+    if (this.places[i]) {
+      if (this.places[i].id == id) {
+        return this.places[i];
       }
     }
   };
   return false;
 }
 
-AddressBook.prototype.deleteContact = function(id) {
-  for (var i=0; i< this.contacts.length; i++) {
-    if (this.contacts[i]) {
-      if (this.contacts[i].id == id) {
-        delete this.contacts[i];
+catalog.prototype.deletePlace = function(id) {
+  for (var i=0; i< this.places.length; i++) {
+    if (this.places[i]) {
+      if (this.places[i].id == id) {
+        delete this.places[i];
         return true;
       }
     }
@@ -42,50 +42,50 @@ AddressBook.prototype.deleteContact = function(id) {
   return false;
 }
 
-AddressBook.prototype.updateContact = function(id) {
-  for (var i=0; i< this.contacts.length; i++) {
-    if (this.contacts[i]) {
-      if (this.contacts[i].id == id) {
-        return this.contacts[i].phoneNumber = "310-353- 2322";
+catalog.prototype.updatePlace = function(id) {
+  for (var i=0; i< this.places.length; i++) {
+    if (this.places[i]) {
+      if (this.places[i].id == id) {
+        return this.places[i].notes = "310-353- 2322";
       }
     }
   };
   return false;
 }
 
-function Contact(firstName, lastName, phoneNumber) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.phoneNumber = phoneNumber;
+function Place(location, landmark, notes) {
+  this.location = location;
+  this.landmark = landmark;
+  this.notes = notes;
 }
 
-var AddressBook = new AddressBook();
-var contact = new Contact("Ada", "Lovelace", "503-555-0100");
-var contact2 = new Contact("Grace", "Hopper", "503-555-0199");
-var contact3 = new Contact("Johnny", "Appleseed", "503-333-3332")
-AddressBook.addContact(contact);
-AddressBook.addContact(contact2);
-AddressBook.addContact(contact3);
+var catalog = new catalog();
+var place = new Place("Brazil", "San Paulo", "Saw Pearl Jam");
+var place2 = new Place("NYC", "Highline", "People Watching");
+var place3 = new Place("LA", "Venice Beach", "skatepark")
+catalog.addPlace(place);
+catalog.addPlace(place2);
+catalog.addPlace(place3);
 
-var look = AddressBook.findContact(2);
-AddressBook.deleteContact(3);
-var check = AddressBook.updateContact(1);
+// var look = catalog.findPlace(2);
+// catalog.deletePlace(3);
+// var check = catalog.updatePlace(1);
 
 $(document).ready(function () {
-  $("#contact1").click(function () {
-    $(".location1Details").fadeToggle(": " + contact.lastName + contact.phoneNumber);
+  $("#place1").click(function () {
+    $(".location1Details").fadeToggle();
   })
-  $("#contact2").click(function () {
-    $(".location2Details").fadeToggle(": " + contact.lastName + contact.phoneNumber);
+  $("#place2").click(function () {
+    $(".location2Details").fadeToggle();
   })
-  $("#contact3").click(function () {
-    $(".location3Details").fadeToggle(": " + contact.lastName + contact.phoneNumber);
+  $("#place3").click(function () {
+    $(".location3Details").fadeToggle();
   })
   
-  $(".location1Details").text(": " + contact.lastName + contact.phoneNumber);
-  $(".location2Details").text(": " + contact.lastName + contact.phoneNumber);
-  $(".location3Details").text(": " + contact.lastName + contact.phoneNumber);
-  $("#contact1").text(contact.firstName)
-  $("#contact2").text(contact2.firstName)
-  $("#contact3").text(contact3.firstName)
+  $(".location1Details").text(": " + place.landmark + ", " + place.notes);
+  $(".location2Details").text(": " + place2.landmark + ", " + place2.notes);
+  $(".location3Details").text(": " + place3.landmark + ", " + place3.notes);
+  $("#place1").text(place.location)
+  $("#place2").text(place2.location)
+  $("#place3").text(place3.location)
 });
